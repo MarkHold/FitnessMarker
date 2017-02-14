@@ -47,17 +47,30 @@ public class Main {
         Statement state2 = con.createStatement();
 
         //the first table
-        state2.execute("CREATE TABLE IF NOT EXISTS redditTablex(theName varchar(30), weight varchar(10))");
+        state2.execute("CREATE TABLE IF NOT EXISTS tableOne(theName varchar(30), weight varchar(10), height varchar(10), age varchar(10))");
 
-        String tableStuff = "INSERT INTO redditTablex(theName, weight) VALUES (?, ?)";
+        state2.execute("CREATE TABLE IF NOT EXISTS tableTwo(theName varchar(30), theKalories varchar(10))");
+
+        String tableStuffOne = "INSERT INTO tableOne(theName, weight, height, age) VALUES (?, ?, ?, ?)";
+
+        //String tableStuffTwo = "INSERT INTO tableOne(theName, Kalories) VALUES (?, ?)";
 
 
-        PreparedStatement prep = con.prepareStatement(tableStuff);
+        PreparedStatement prep = con.prepareStatement(tableStuffOne);
         prep.setString(1, info.getName());
         prep.setString(2, String.valueOf(info.getWeight()));
+        prep.setString(3, String.valueOf(info.getHeight()));
+        prep.setString(4, String.valueOf(info.getAge()));
 
         prep.execute();
 
+        /*
+
+        PreparedStatement prep2 = con.prepareStatement(tableStuffTwo);
+        prep.setString(1, info.getName());
+        prep.setString(2, String.valueOf(info.getWeight()));
+
+*/
         //queries();
 
     }

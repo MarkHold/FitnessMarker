@@ -67,12 +67,9 @@ public class InfoGather {
 
         WeightGain gain = new WeightGain();
 
-        if (x == 1) {
-
             System.out.println("Your total calories are: " + loss.totalCalories(getWeight(), getHeight(), getAge()));
-        } else if (x == 2) {
             System.out.println("Your total calories are: " + gain.totalCalories(getWeight(), getHeight(), getAge()));
 
-        }
+
     }
 }
