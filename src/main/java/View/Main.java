@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Scanner;
 
 /**
  * Created by markuslyconhold on 02/01/17.
@@ -42,28 +43,40 @@ public class Main {
 
     //in this method we import the data from the file and parse it
     public static void Initialise() throws SQLException, IOException, ParseException {
-        InfoGather info = new InfoGather();
 
-        Statement state2 = con.createStatement();
+        int x;
+        Scanner scan = new Scanner(System.in);
+        boolean run = true;
+        while(true) {
+            InfoGather info = new InfoGather();
 
-        //the first table
-        state2.execute("CREATE TABLE IF NOT EXISTS tableOne(theName varchar(30), weight varchar(10), height varchar(10), age varchar(10))");
+            Statement state2 = con.createStatement();
 
-        state2.execute("CREATE TABLE IF NOT EXISTS tableTwo(theName varchar(30), theKalories varchar(10))");
+            //the first table
+            state2.execute("CREATE TABLE IF NOT EXISTS tableOne(theName varchar(30), weight varchar(10), height varchar(10), age varchar(10))");
 
-        String tableStuffOne = "INSERT INTO tableOne(theName, weight, height, age) VALUES (?, ?, ?, ?)";
+            state2.execute("CREATE TABLE IF NOT EXISTS tableTwo(theName varchar(30), theKalories varchar(10))");
 
-        //String tableStuffTwo = "INSERT INTO tableOne(theName, Kalories) VALUES (?, ?)";
+            String tableStuffOne = "INSERT INTO tableOne(theName, weight, height, age) VALUES (?, ?, ?, ?)";
+
+            //String tableStuffTwo = "INSERT INTO tableOne(theName, Kalories) VALUES (?, ?)";
 
 
-        PreparedStatement prep = con.prepareStatement(tableStuffOne);
-        prep.setString(1, info.getName());
-        prep.setString(2, String.valueOf(info.getWeight()));
-        prep.setString(3, String.valueOf(info.getHeight()));
-        prep.setString(4, String.valueOf(info.getAge()));
+            PreparedStatement prep = con.prepareStatement(tableStuffOne);
+            prep.setString(1, info.getName());
+            prep.setString(2, String.valueOf(info.getWeight()));
+            prep.setString(3, String.valueOf(info.getHeight()));
+            prep.setString(4, String.valueOf(info.getAge()));
 
-        prep.execute();
+            prep.execute();
 
+            System.out.println("If you want to enter more information, please press 1, if you are done, press 2.");
+            x = scan.nextInt();
+            if(x == 2){
+                run = false;
+                break;
+            }
+        }
         /*
 
         PreparedStatement prep2 = con.prepareStatement(tableStuffTwo);
