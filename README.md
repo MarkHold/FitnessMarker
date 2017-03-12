@@ -6,4 +6,4 @@ The application also saves this information in a database, where the developer c
 what is the famoust fitness goal among the people using this application, how much does the avarage user weigh and so on. 
 
 
-Keywords: Java, SQLite, JavaFx, MVC, JUnit. 
+Keywords: Java, SQLite, JavaFx, MVC. 
