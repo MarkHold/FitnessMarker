@@ -1,11 +1,8 @@
 package View;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import Model.InfoGather;
 import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
@@ -59,7 +56,7 @@ public class Main {
 
             String tableStuffOne = "INSERT INTO tableOne(theName, weight, height, age) VALUES (?, ?, ?, ?)";
 
-            //String tableStuffTwo = "INSERT INTO tableOne(theName, Kalories) VALUES (?, ?)";
+            String tableStuffTwo = "INSERT INTO tableOne(theName, Kalories) VALUES (?, ?)";
 
 
             PreparedStatement prep = con.prepareStatement(tableStuffOne);
@@ -70,6 +67,14 @@ public class Main {
 
             prep.execute();
 
+
+            PreparedStatement prep2 = con.prepareStatement(tableStuffTwo);
+            prep2.setString(1, info.getName());
+            prep2.setString(2, String.valueOf(info.getWeight()));
+
+            prep2.execute();
+
+
             System.out.println("If you want to enter more information, please press 1, if you are done, press 2.");
             x = scan.nextInt();
             if(x == 2){
@@ -77,13 +82,8 @@ public class Main {
                 break;
             }
         }
-        /*
 
-        PreparedStatement prep2 = con.prepareStatement(tableStuffTwo);
-        prep.setString(1, info.getName());
-        prep.setString(2, String.valueOf(info.getWeight()));
 
-*/
         //queries();
 
     }

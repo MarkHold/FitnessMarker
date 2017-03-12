@@ -1,4 +1,4 @@
-package View;
+package Model;
 
 import Model.WeightGain;
 import Model.WeightLoss;
@@ -13,6 +13,10 @@ import java.util.Scanner;
  * dicision.
  */
 public class InfoGather {
+
+    private int w;
+    private int h;
+    private int a;
 
 
     public static String getName(){
@@ -55,6 +59,11 @@ public class InfoGather {
         Scanner scan = new Scanner(System.in);
         int al = scan.nextInt();
         return al;
+    }
+
+
+    public static int countKcal(){
+        return 0;
     }
 
     public static void Decision() {
